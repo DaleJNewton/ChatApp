@@ -1,9 +1,9 @@
 <script setup lang="ts">
-    import TextBox from './components/TextBox.vue';
     import ChatDisplay from './components/ChatDisplay.vue';
     import type Message from './models/message';
     import { ref, type Ref } from 'vue';
     import {io} from 'socket.io-client';
+    import TextBox from './components/TextBox.vue';
 
     const localMessages: Ref<Message[]> = ref([]);
 
@@ -27,7 +27,7 @@
         <ChatDisplay :messages="localMessages"></ChatDisplay>
       </div>
       <div>
-        <TextBox @send="messageSendHandler"></TextBox>
+        <TextBox  @send="messageSendHandler" ></TextBox>
       </div>
     </div>
 </template>

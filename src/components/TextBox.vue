@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type Message from '@/models/message';
-import {ref} from 'vue';
+import { ref } from 'vue';
 
 const emit = defineEmits<{
     (e: 'send', message: Message): void
@@ -16,7 +16,9 @@ const sendHandler = () => {
         sender: "Dale"
     }
 
-    emit("send", m);
+    if (text.value != "") {
+        emit("send", m);
+    }
 
     text.value = ''
 }
@@ -25,8 +27,8 @@ const sendHandler = () => {
 
 <template>
     <div class="container"> 
-        <input class = "message" v-model="text" type="text" @keyup.enter="sendHandler"/>
-        <button @click="sendHandler" class="button">Send</button>
+        <InputText type="text" class="message" v-model="text" @keyup.enter="sendHandler"/>
+        <Button label="Send" class='button' @click="sendHandler" ></Button>
     </div>
 </template>
 
@@ -38,11 +40,12 @@ const sendHandler = () => {
 }
 
 .button {
-    margin: 1em;
+    margin: 0.5em;
 }
 
 .message {
     font-size: 2em;
+    margin: 0.1em;
 }
 
 </style>
